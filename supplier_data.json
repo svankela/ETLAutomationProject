@@ -1,0 +1,13 @@
+[
+    {"supplier_id": 1, "supplier_name": "Supplier A"},
+    {"supplier_id": 2, "supplier_name": "Supplier B"},
+    {"supplier_id": 3, "supplier_name": "Supplier C"},
+    {"supplier_id": 4, "supplier_name": "Supplier D"},
+    {"supplier_id": 5, "supplier_name": "Supplier E"},
+    {"supplier_id": 6, "supplier_name": "Supplier F"},
+    {"supplier_id": 7, "supplier_name": "Supplier G"},
+    {"supplier_id": 8, "supplier_name": "Supplier H"},
+    {"supplier_id": 9, "supplier_name": "Supplier I"},
+    {"supplier_id": 10, "supplier_name": "Supplier J"}
+  ]
+  

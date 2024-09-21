@@ -6,6 +6,8 @@ import pyarrow.parquet as pq
 
 conn_mysql=create_engine('mysql+pymysql://root:Sur_nar26@localhost:3306/etlretailproject')
 
+conn_oracle=create_engine("oracle+cx_oracle://system:admin@localhost:1521/xe")
+
 #Load CSV files to Stage(MySQL)
 def load_csv_mysql(file_path,table_name):
     df=pd.read_csv(file_path)
@@ -24,7 +26,12 @@ def load_xml_mysql(file_path,table_name):
 #Load PARQUET file to Stage(MySQL)
 def load_parquet_mysql(file_path,table_name):
     df=pd.read_parquet(file_path)
-    df.to_sql(table_name,conn_mysql,if_exists='replace',index=False)    
+    df.to_sql(table_name,conn_mysql,if_exists='replace',index=False)  
+
+#Load Oracle data to Stage(MySQL)
+def load_oracle_mysql(query,table_name):
+    df=pd.read_sql(query,conn_oracle)
+    df.to_sql(table_name,conn_mysql,if_exists="replace",index=False) 
 
 if __name__ =="__main__":
     load_csv_mysql('product_data.csv','product_staging')
@@ -32,3 +39,4 @@ if __name__ =="__main__":
     load_xml_mysql('inventory_data.xml','inventory_staging')
     load_json_mysql('supplier_data.json','supplier_staging')
     load_parquet_mysql('MTCars_data.parquet','mtcars_staging')
+    load_oracle_mysql('select * from Store','store_staging')

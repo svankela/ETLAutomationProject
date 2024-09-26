@@ -1,0 +1,32 @@
+2024-09-27 00:18:56,269 - INFO - Starting to load CSV file: Data/product_data.csv into table: product_staging
+2024-09-27 00:18:58,003 - INFO - Succcessfully loaded CSV file: Data/product_data.csv into table: product_staging
+2024-09-27 00:18:58,003 - INFO - Starting to load CSV file: Data/sales_data.csv into table: sales_staging
+2024-09-27 00:18:59,098 - INFO - Succcessfully loaded CSV file: Data/sales_data.csv into table: sales_staging
+2024-09-27 00:18:59,098 - INFO - Starting to load XML file: Data/inventory_data.xml into table: inventory_staging
+2024-09-27 00:19:00,166 - INFO - Succcessfully loaded XML file: Data/inventory_data.xml into table: inventory_staging
+2024-09-27 00:19:00,166 - INFO - Starting to load JSON file: Data/supplier_data.json into table: supplier_staging
+2024-09-27 00:19:01,096 - INFO - Succcessfully loaded JSON file: Data/supplier_data.json into table: supplier_staging
+2024-09-27 00:19:01,096 - INFO - Starting to load PARQUET file: Data/MTCars_data.parquet into table: mtcars_staging
+2024-09-27 00:19:07,389 - INFO - Succcessfully loaded PARQUET file: Data/MTCars_data.parquet into table: mtcars_staging
+2024-09-27 00:19:07,389 - INFO - Starting to load Oracle data using query: select * from Store into table: store_staging
+2024-09-27 00:19:13,041 - INFO - Successfully loaded Oracle data into table: store_staging
+2024-09-27 00:19:13,041 - INFO - Starting to load filter transformation into the table: sales_filter
+2024-09-27 00:19:13,188 - INFO - Succesfully applied filter transformation and loaded the table: sales_filter
+2024-09-27 00:19:13,188 - INFO - Loading router 1 data into the table: sales_low
+2024-09-27 00:19:13,278 - INFO - Succesfully loaded router 1 data into the table: sales_low
+2024-09-27 00:19:13,278 - INFO - Loading router 2 data into the table: sales_high
+2024-09-27 00:19:13,393 - INFO - Succesfully loaded router 2 data into the table: sales_high
+2024-09-27 00:19:13,393 - INFO - Loading aggregator data for the table: monthly_sales_aggregator
+2024-09-27 00:19:13,488 - INFO - Succesfully loaded aggregator data into the table: monthly_sales_aggregator
+2024-09-27 00:19:13,488 - INFO - Loading joiner data into the table: sales_details
+2024-09-27 00:19:13,597 - INFO - Succesfully loaded joiner data into the table: sales_details
+2024-09-27 00:19:13,598 - INFO - Loading inventory data into the table: aggregated_inventory_data
+2024-09-27 00:19:13,700 - INFO - Succesfully loaded inventory data into the table: aggregated_inventory_data
+2024-09-27 00:19:13,700 - INFO - Loading started for the table fact_sales
+2024-09-27 00:19:13,725 - INFO - Data successfully loaded into Fact table fact_sales from sale_details
+2024-09-27 00:19:13,725 - INFO - Loading started for the table fact_inventory
+2024-09-27 00:19:13,732 - INFO - Data successfully loaded into Fact table fact_inventory
+2024-09-27 00:19:13,732 - INFO - Loading started for the table monthly_sales_summary
+2024-09-27 00:19:13,735 - INFO - Data successfully loaded into table monthly_sales_summary
+2024-09-27 00:19:13,735 - INFO - Loading started for the table inventory_levels_by_store
+2024-09-27 00:19:13,739 - INFO - Data successfully loaded into table inventory_levels_by_store

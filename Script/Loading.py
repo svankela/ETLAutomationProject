@@ -2,11 +2,19 @@ import pandas as pd
 from sqlalchemy import create_engine,text
 import json
 import logging
-# Set up logging configuration
-logging.basicConfig(level=logging.INFO)
-logger=logging.getLogger(__name__)
+from Script.config import MYSQL_HOST,MYSQL_PORT,MYSQL_USER,MYSQL_PASSWORD,MYSQL_DATABASE
 
-mysql_con=create_engine('mysql+pymysql://root:Sur_nar26@localhost:3306/etlretailproject')
+# Set up logging configuration
+logging.basicConfig(
+    filename='Logs/etlprocess.log',  # Name of the log file
+    filemode='a',        # 'a' to append, 'w' to overwrite
+    format='%(asctime)s - %(levelname)s - %(message)s',  # Log format
+    level=logging.INFO    # Set the logging level
+)
+logger = logging.getLogger(__name__)
+
+#mysql_con=create_engine('mysql+pymysql://root:Sur_nar26@localhost:3306/etlretailproject')
+mysql_con = create_engine(f'mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}')
 
 def load_sales_fact():
     try:
@@ -76,7 +84,18 @@ def load_inventory_levels_by_store():
 
 
 if __name__=="__main__":
+    logger.info("Data Loading started for sales_fact...... ")
     load_sales_fact()
+    logger.info("Data Loading completed successfully for sales_fact...... ")
+
+    logger.info("Data Loading started for inventory_fact...... ")
     load_fact_inventory()
+    logger.info("Data Loading completed successfully for inventory_fact...... ")
+
+    logger.info("Data Loading started for sales_summary...... ")
     load_monthly_sales_summary()
-    load_inventory_levels_by_store()  
+    logger.info("Data Loading completed successfully for sales_summary...... ")
+    
+    logger.info("Data Loading started for inventory_levels_by_store...... ")
+    load_inventory_levels_by_store()
+    logger.info("Data Loading completed successfully for inventory_levels_by_store...... ")

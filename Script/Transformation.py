@@ -1,12 +1,21 @@
 import pandas as pd
 import json
 from sqlalchemy import create_engine,text
+from Script.config import MYSQL_HOST,MYSQL_PORT,MYSQL_USER,MYSQL_PASSWORD,MYSQL_DATABASE
 import logging
-logging.basicConfig(level=logging.INFO)
-logger=logging.getLogger(__name__)
+
+# Set up logging configuration
+logging.basicConfig(
+    filename='Logs/etlprocess.log',  # Name of the log file
+    filemode='a',        # 'a' to append, 'w' to overwrite
+    format='%(asctime)s - %(levelname)s - %(message)s',  # Log format
+    level=logging.INFO    # Set the logging level
+)
+logger = logging.getLogger(__name__)
 
 # create mysql database commection
-conn_mysql=create_engine('mysql+pymysql://root:Sur_nar26@localhost:3306/etlretailproject')
+#conn_mysql=create_engine('mysql+pymysql://root:Sur_nar26@localhost:3306/etlretailproject')
+conn_mysql = create_engine(f'mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}')
 
 def sales_filter_data():
     try:
@@ -79,10 +88,24 @@ def inventory_data():
 
     
 if __name__ =="__main__":
+   logger.info("Data Transfromation started for filter...... ")
    sales_filter_data()
+   logger.info("Data Transfromation completed successfully for filter...... ") 
+
+   logger.info("Data Transfromation started for router...... ") 
    sales_router_data()
+   logger.info("Data Transfromation completed successfully for router...... ")
+
+   logger.info("Data Transfromation started for aggregator...... ") 
    sales_aggregator_data()
+   logger.info("Data Transfromation completed successfully for aggregator...... ") 
+   
+   logger.info("Data Transfromation started for joiner...... ")
    sales_joiner_data()
+   logger.info("Data Transfromation completed successfully for joiner...... ")
+   
+   logger.info("Data Transfromation started for inventory...... ")
    inventory_data()
+   logger.info("Data Transfromation completed successfully for inventory...... ")
 
 
